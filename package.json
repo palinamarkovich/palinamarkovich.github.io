@@ -1,0 +1,17 @@
+{
+  "name": "kirillsakun.github.io",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build --outDir docs",
+    "preview": "vite preview --outDir docs"
+  },
+  "devDependencies": {
+    "vite": "^6.3.0"
+  },
+  "dependencies": {
+    "modern-normalize": "^2.0.0"
+  }
+}
