@@ -39,7 +39,7 @@
 :root {
 	--color--background: #FFFFFF;
 	--color--text: #0C0C0C;
-	--color--accent: #0048FF;
+	--color--accent: color-mix(in hsl, #0048FF 80%, transparent 20%);
 	--border--base: 1px solid color-mix(in hsl, var(--color--text) 20%, transparent 80%) ;
 
 	--body--inline-padding: clamp(1rem, 5vw, 2rem);
@@ -82,7 +82,7 @@
 
 .main {
 	display: grid;
-	grid-template-columns: 1fr 1.71fr;
+	grid-template-columns: 1fr 1.62fr;
 	gap: 2rem;
 	margin-inline: auto;
 }
@@ -99,6 +99,7 @@
 	grid-template-areas: "heading decoration"
 	                     "heading content";
 	grid-template-columns: subgrid;
+	row-gap: 0.5rem;
 
 	.section__heading {
 		grid-area: heading;
@@ -116,13 +117,35 @@
 }
 
 .header {
-	padding-block-start: 0;
-	text-align: center;
+	container-type: inline-size;
+	container-name: header;
+	width: 100%;
+	aspect-ratio: 3.9 / 1;
+	position: relative;
+	margin-block-end: 3.5rem;
 
 	.name {
-		display: inline-flex;
-		width: 100%;
+		position: relative;
+		z-index: 2;
+		inline-size: 100%;
+		block-size: 100%;
+		font-size: clamp(4rem, 14.5cqw, 100rem);
+		font-weight: 400;
+		line-height: 1;
+		letter-spacing: -0.02em;
+		display: flex;
 		justify-content: space-between;
+		.last-name {
+			align-self: flex-end;
+		}
+	}
+
+	.job-title {
+		position: absolute;
+		z-index: 1;
+		inset-block-start: 36.2%;
+		inset-inline-start: 23.9%;
+		font-size: clamp(4rem, 6.5cqw, 100rem);
 	}
 }
 
@@ -147,22 +170,15 @@
 /* Typography */
 .heading {
 	margin: 0;
+	line-height: 1;
 	font-weight: 500;
 
 	&:is(.heading--xl, .heading--lg) {
 		font-family: 'SF Pro Display', sans-serif;
 	}
 
-	&.heading--xl {
-		font-size: 10.75rem;
-		font-weight: 400;
-		line-height: 1;
-		letter-spacing: -0.02em;
-	}
-
 	&.heading--lg {
-		font-size: 1.75rem;
-		margin-block-end: 0.5em;
+		font-size: 2rem;
 	}
 
 	&.heading--md {
@@ -176,10 +192,9 @@
 
 	&.heading--accent {
 		font-family: 'ZT Neue Ralewe', serif;
-		font-size: 5rem;
 		font-style: italic;
 		font-weight: 400;
-		letter-spacing: -0.02em;
+		letter-spacing: -0.01em;
 		color: var(--color--accent);
 	}
 }
