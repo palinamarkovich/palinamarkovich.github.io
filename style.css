@@ -1,43 +1,50 @@
-@import 'modern-normalize/modern-normalize.css';
-
+/* Fonts */
 @font-face {
-	font-family: 'Crimson Pro';
-	src: local('Crimson Pro'),
-	url('/fonts/CrimsonPro-Regular.woff2') format('woff2');
+	font-family: 'SF Pro Display';
+	src: local('SF Pro Display'),
+	url('/fonts/SF-Pro-Display-Regular.woff2') format('woff2');
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
 }
 
 @font-face {
-	font-family: 'Roboto';
-	src: local('Roboto'),
-	url('/fonts/Roboto-Regular.woff2') format('woff2');
-	font-weight: 400;
+	font-family: 'SF Pro Display';
+	src: local('SF Pro Display'),
+	url('/fonts/SF-Pro-Display-Medium.woff2') format('woff2');
+	font-weight: 500;
 	font-style: normal;
 	font-display: swap;
 }
 
 @font-face {
-	font-family: 'Roboto';
-	src: local('Roboto'),
-	url('/fonts/Roboto-Bold.woff2') format('woff2');
+	font-family: 'SF Pro Display';
+	src: local('SF Pro Display'),
+	url('/fonts/SF-Pro-Display-Bold.woff2') format('woff2');
 	font-weight: 700;
 	font-style: normal;
 	font-display: swap;
 }
 
+@font-face {
+	font-family: 'ZT Neue Ralewe';
+	src: local('ZT Neue Ralewe'),
+	url('/fonts/ZT-Neue-Ralewe-Italic.woff2') format('woff2');
+	font-weight: 400;
+	font-style: italic;
+	font-display: swap;
+}
+
+/* Variables */
 :root {
-	--color--background: #f5f5f5;
-	--color--text: #000000;
-	--border--base: 2px solid var(--color--text);
+	--color--background: #FFFFFF;
+	--color--text: #0C0C0C;
+	--color--accent: #0048FF;
+	--border--base: 1px solid color-mix(in hsl, var(--color--text) 20%, transparent 80%) ;
 
 	--body--inline-padding: clamp(1rem, 5vw, 2rem);
 	--body--block-padding: clamp(2rem, 10vw, 4rem);
-	--section--max-inline-size: 50rem;
-
-	--list--columns-count: 3;
-	--list--columns-gap: 1rem;
+	--body--max-inline-size: 75rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -63,15 +70,22 @@
 
 /* Main styles */
 .body {
-	font-family: 'Roboto', sans-serif;
+	font-family: 'SF Pro Display', sans-serif;
 	line-height: 1.4;
 	color: var(--color--text);
 	background-color: var(--color--background);
-	margin: 0;
+	margin: 0 auto;
+	max-width: var(--body--max-inline-size);
 	padding-inline: var(--body--inline-padding);
 	padding-block: var(--body--block-padding);
 }
 
+.main {
+	display: grid;
+	grid-template-columns: 1fr 1.71fr;
+	gap: 2rem;
+	margin-inline: auto;
+}
 /*focus-visible*/
 :focus-visible {
 	outline: var(--border--base);
@@ -80,21 +94,38 @@
 
 /* Layout */
 .section {
-	padding-block: clamp(1rem, 5vw, 2rem);
-	margin-inline: auto;
-	border-block-end: var(--border--base);
-	inline-size: min(var(--section--max-inline-size), 100%);
+	grid-column: 2 span;
+	display: grid;
+	grid-template-areas: "heading decoration"
+	                     "heading content";
+	grid-template-columns: subgrid;
 
-	&:last-child {
-		border-block-end: none;
-		padding-block-end: 0;
+	.section__heading {
+		grid-area: heading;
+	}
+	.section__content {
+		grid-area: content;
+	}
+	&::before {
+		content: '';
+		grid-area: decoration;
+		display: block;
+		border-top: var(--border--base);
+		margin-block: 1rem;
 	}
 }
 
 .header {
 	padding-block-start: 0;
 	text-align: center;
+
+	.name {
+		display: inline-flex;
+		width: 100%;
+		justify-content: space-between;
+	}
 }
+
 
 .list {
 	padding-inline-start: 1rem;
@@ -116,22 +147,21 @@
 /* Typography */
 .heading {
 	margin: 0;
+	font-weight: 500;
 
 	&:is(.heading--xl, .heading--lg) {
-		font-family: 'Crimson Pro', serif;
-		font-weight: 400;
-		text-align: center;
-		line-height: 1.2;
+		font-family: 'SF Pro Display', sans-serif;
 	}
 
 	&.heading--xl {
-		font-size: clamp(2.5rem, 5vw, 4rem);
-		margin-block-end: 0.25em;
+		font-size: 10.75rem;
+		font-weight: 400;
+		line-height: 1;
+		letter-spacing: -0.02em;
 	}
 
 	&.heading--lg {
 		font-size: 1.75rem;
-		text-transform: uppercase;
 		margin-block-end: 0.5em;
 	}
 
@@ -142,6 +172,15 @@
 	&.heading--sm {
 		font-size: 1rem;
 		margin-block-start: 0.75em;
+	}
+
+	&.heading--accent {
+		font-family: 'ZT Neue Ralewe', serif;
+		font-size: 5rem;
+		font-style: italic;
+		font-weight: 400;
+		letter-spacing: -0.02em;
+		color: var(--color--accent);
 	}
 }
 
