@@ -38,6 +38,7 @@
 /* Variables */
 :root {
 	--color--background: #FFFFFF;
+	--color--background-secondary: #F2F2F2;
 	--color--text: #0C0C0C;
 	--color--accent: color-mix(in hsl, #0048FF 80%, transparent 20%);
 	--border--base: 1px solid color-mix(in hsl, var(--color--text) 20%, transparent 80%) ;
@@ -58,13 +59,7 @@
 	:root {
 		--body--inline-padding: 0;
 		--body--block-padding: 0;
-		--section--max-inline-size: 100%;
-	}
-	.list {
-		&.list--columns {
-			column-width: auto;
-			column-count: var(--list--columns-count);
-		}
+		--body--max-inline-size: 100%;
 	}
 }
 
@@ -154,16 +149,13 @@
 	padding-inline-start: 1rem;
 	list-style-type: disc;
 
-	& .list {
-		list-style-type: circle;
+	& .list__item::marker {
+		/*font-size: .75em;*/
+		/*line-height: calc(1em / 0.75);*/
 	}
 
-	&.list--columns {
-		padding-inline-start: 0;
-		list-style-position: inside;
-		column-width: calc((var(--section--max-inline-size) / var(--list--columns-count))
-		- var(--list--columns-gap) * (var(--list--columns-count) / (var(--list--columns-count) - 1)));
-		column-gap: var(--list--columns-gap);
+	& .list {
+		list-style-type: circle;
 	}
 }
 
@@ -223,6 +215,34 @@
 	.address__link {
 		color: var(--color--text);
 		text-decoration: underline;
+	}
+}
+
+/* Sections */
+
+.skills {
+	.section__content {
+		container-type: inline-size;
+		container-name: skills-content;
+		--list-column-count: 3;
+	}
+
+	.list {
+		padding-inline-start: 0;
+		list-style-position: inside;
+		display: grid;
+		width: fit-content;
+		grid-template-columns: repeat(var(--list-column-count), auto);
+		row-gap: 0.5rem;
+		column-gap: 1rem;
+	}
+	.list__item {
+		padding-block: 0.625em;
+		padding-inline: 0.75em 1em;
+		border-radius: 0.5em;
+		background-color: var(--color--background-secondary);
+		text-wrap: nowrap;
+		width: fit-content;
 	}
 }
 
