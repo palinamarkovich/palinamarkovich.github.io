@@ -331,3 +331,65 @@
 		border-radius: 0.5em;
 	}
 }
+
+.contacts {
+	.section__content {
+		font-style: normal;
+	}
+	.list {
+		list-style-type: none;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		column-gap: 1em;
+		row-gap: 1em;
+		padding-inline-start: 0;
+		margin-block: 0;
+	}
+	.contact__link {
+		text-decoration: none;
+		display: flex;
+		align-items: center;
+		gap: 0.5em;
+		color: inherit;
+		background-color: color-mix(in hsl, currentColor 5%, transparent 95%);
+		padding: 0.75em;
+		border-radius: 0.5em;
+
+		&::after {
+			content: '';
+			display: block;
+			inline-size: 1em;
+			block-size: 1em;
+			mask: url(#icon-link) no-repeat center / contain;
+			background-color: currentColor;
+			margin-inline-start: auto;
+		}
+	}
+	.contact__icon {
+		inline-size: 2em;
+		block-size: 2em;
+		object-fit: contain;
+		border-radius: 0.25em;
+	}
+}
+
+.contact {
+	&.linkedin {
+		color: #2867B2;
+	}
+	&.telegram {
+		color: #0088CC;
+	}
+	&.behance {
+		color: #1157FF;
+	}
+	&.dribbble {
+		color: #EA4C89;
+	}
+	&.mail {
+		color: #1A6AE7;
+	}
+	&.phone {
+		color: #0EBC29;
+	}
+}
