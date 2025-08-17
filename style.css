@@ -287,3 +287,25 @@
 		gap: 2rem;
 	}
 }
+
+.languages {
+	.languages__list {
+		display: grid;
+		padding-inline-start: 0;
+		grid-template-columns: repeat(3, auto);
+		column-gap: 2.25em;
+		row-gap: 1.5em;
+		list-style: none;
+	}
+
+	.language {
+		display: flex;
+		align-items: center;
+		gap: 0.5em;
+	}
+	.language__flag {
+		inline-size: 2em;
+		block-size: 2em;
+		object-fit: contain;
+	}
+}
