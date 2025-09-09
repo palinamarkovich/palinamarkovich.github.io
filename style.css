@@ -78,7 +78,7 @@
 .main {
 	display: grid;
 	grid-template-columns: 1fr 1.62fr;
-	gap: 2rem;
+	gap: 3.5rem;
 	margin-inline: auto;
 }
 
@@ -105,7 +105,6 @@
 
 		container-type: inline-size;
 		container-name: section-content;
-		--list-column-count: 3;
 	}
 	&::before {
 		content: '';
@@ -119,20 +118,23 @@
 .list {
 	padding-inline-start: 1rem;
 	list-style-type: disc;
+	margin-block: 0;
 
 	.item::marker {
 		/*font-size: .75em;*/
 		/*line-height: calc(1em / 0.75);*/
 	}
 
-	.list {
-		list-style-type: circle;
-	}
-
 	&.list--grid {
 		--list-grid-column-gap: 2.25em;
+		--list-items-count: 3;
+		--list-column-count: 3;
+		--list-rows-count: round(up, calc(var(--list-items-count) / var(--list-column-count)), 1);
+
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-auto-flow: column;
+		grid-template-columns: repeat(var(--list-column-count), 1fr);
+		grid-template-rows: repeat(var(--list-rows-count), 1fr);
 		column-gap: var(--list-grid-column-gap);
 		row-gap: var(--list-grid-row-gap, 1rem);
 		padding-inline-start: 0;
@@ -156,6 +158,7 @@
 
 	&.heading--md {
 		font-size: 1rem;
+		font-weight: 700;
 	}
 
 	&.heading--sm {
@@ -219,6 +222,7 @@
 .skills {
 	.list {
 		--list-grid-row-gap: 0.5rem;
+		--list-items-count: 12;
 		list-style-type: disc;
 		list-style-position: inside;
 	}
@@ -233,50 +237,42 @@
 }
 
 .experience {
-	& .experience__list {
+	.list:not(.experience-item__list) {
 		list-style-type: none;
 		padding-inline-start: 0;
-		margin-block: 0;
-		display: grid;
-		gap: 2rem;
 	}
 
-	& .experience__header {
-		display: grid;
-		grid-template-areas: 'company date' 'position date';
-		gap: 0 1rem;
-		font-weight: bold;
-		margin-block-end: 0.5rem;
-	}
+	.experience-item {
+		.experience-item__header {
+			display: flex;
+			gap: 1rem;
+			justify-content: space-between;
+			font-weight: 700;
+			margin-block-end: 1rem;
+		}
 
-	.experience__date {
-		grid-area: date;
-		text-align: end;
-	}
-
-	.experience__company {
-		grid-area: company;
-	}
-
-	.experience__position {
-		grid-area: position;
-		margin-block-end: 0;
+		.experience-item__list {
+			display: grid;
+			gap: 0.75em;
+		}
+		strong {
+			font-weight: 500;
+		}
 	}
 }
 
 .education {
-	.item {
+	.list {
 		list-style-type: none;
 		padding-inline-start: 0;
-		margin-block: 0;
-		display: grid;
-		gap: 2rem;
 	}
 }
 
 .languages {
 	.list {
 		--list-grid-row-gap: 1.5em;
+		--list-items-count: 4;
+		grid-auto-flow: row;
 	}
 	.item {
 		display: flex;
@@ -313,6 +309,7 @@
 	}
 	.list {
 		--list-grid-row-gap: 1em;
+		--list-items-count: 6;
 	}
 	.item {
 		&.linkedin {
