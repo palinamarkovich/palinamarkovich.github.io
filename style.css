@@ -49,19 +49,7 @@
 	--body--max-inline-size: 75rem;
 }
 
-@media (prefers-color-scheme: dark) {
-	:root {
-		/*--color--background: #1a1a1a;*/
-		/*--color--text: #eeeeee;*/
-	}
-}
-
 @media print {
-	:root {
-		--body--inline-padding: 0;
-		--body--block-padding: 0;
-		--body--max-inline-size: 100%;
-	}
 }
 
 /* Main styles */
@@ -181,24 +169,6 @@
 
 	&:not(:last-child) {
 		margin-block-end: 0.5em;
-	}
-}
-
-/* Icons */
-.inline-icon {
-	&::after {
-		content: '';
-		display: inline-block;
-		inline-size: 1em;
-		block-size: 1em;
-		mask-repeat: no-repeat;
-		mask-position: center;
-		mask-size: contain;
-		background-color: currentColor;
-		margin-inline-start: auto;
-	}
-	&.inline-icon--link::after {
-		mask-image: url(#icon-link);
 	}
 }
 
@@ -397,6 +367,20 @@
 		text-align: end;
 		.link {
 			color: inherit;
+			display: inline-flex;
+			align-items: center;
+			&::after {
+				content: '';
+				display: inline-block;
+				inline-size: 1em;
+				block-size: 1em;
+				mask-image: url(#icon-link);
+				mask-repeat: no-repeat;
+				mask-position: center;
+				mask-size: contain;
+				background-color: currentColor;
+				margin-inline-start: auto;
+			}
 		}
 	}
 	.work {
