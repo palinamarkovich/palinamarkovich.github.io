@@ -52,6 +52,18 @@
 @media print {
 }
 
+.link {
+	outline: 2px solid transparent;
+	outline-offset: 2px;
+
+	&:focus-visible {
+		transition-property: outline-color, outline-offset;
+		transition-duration: 0.3s;
+		transition-timing-function: ease;
+		outline-color: currentColor;
+		outline-offset: 0;
+	}
+}
 /* Main styles */
 .body {
 	font-family: 'SF Pro Display', sans-serif;
@@ -69,12 +81,6 @@
 	grid-template-columns: 1fr 1.62fr;
 	gap: 3.5rem;
 	margin-inline: auto;
-}
-
-/*focus-visible*/
-:focus-visible {
-	outline: var(--border--base);
-	outline-offset: 2px;
 }
 
 /* Layout */
@@ -115,7 +121,7 @@
 	}
 
 	&.list--grid {
-		--list-grid-column-gap: 2.25em;
+		--list-grid-column-gap: 1em;
 		--list-items-count: 3;
 		--list-column-count: 3;
 		--list-rows-count: round(up, calc(var(--list-items-count) / var(--list-column-count)), 1);
@@ -329,6 +335,12 @@
 		background-color: color-mix(in hsl, currentColor 5%, transparent 95%);
 		padding: 0.75em;
 		border-radius: 0.5em;
+		transition-property: outline-color, outline-offset, background-color;
+		transition-duration: 0.3s;
+		transition-timing-function: ease;
+		&:hover {
+			background-color: color-mix(in hsl, currentColor 10%, transparent 90%);
+		}
 
 		&::after {
 			content: '';
@@ -369,6 +381,7 @@
 			color: inherit;
 			display: inline-flex;
 			align-items: center;
+			border-radius: 0.25em;
 			&::after {
 				content: '';
 				display: inline-block;
@@ -386,11 +399,23 @@
 	.work {
 		position: relative;
 		.link {
+			display: block;
 			color: var(--color--background);
+			border-radius: 0.5em;
+			overflow: hidden;
+			&:hover {
+				.cover {
+					transform: scale(1.05);
+				}
+			}
+			&:focus-visible {
+				outline-color: var(--color--accent);
+			}
 		}
 		.cover {
+			display: block;
 			inline-size: 100%;
-			border-radius: 0.5em;
+			transition: transform 0.3s ease;
 		}
 		.button {
 			position: absolute;
