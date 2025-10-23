@@ -492,3 +492,19 @@
 		}
 	}
 }
+
+/* Print Styles */
+@media print {
+	:root {
+		/* Use browser default margins for print */
+		--body--inline-padding: 0;
+		--body--block-padding: 0;
+		--body--max-inline-size: 100%;
+	}
+
+	/* Force color printing */
+	body {
+		print-color-adjust: exact;
+		-webkit-print-color-adjust: exact;
+	}
+}
