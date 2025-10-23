@@ -121,6 +121,8 @@
 	padding-inline-start: 1rem;
 	list-style-type: disc;
 	margin-block: 0;
+	display: grid;
+	gap: 1.5em;
 
 	.item::marker {
 		/*font-size: .75em;*/
@@ -140,7 +142,6 @@
 			/*--list-column-count: 1;*/
 		}
 
-		display: grid;
 		grid-auto-flow: column;
 		grid-template-columns: repeat(var(--list-column-count), 1fr);
 		grid-template-rows: repeat(var(--list-rows-count), 1fr);
