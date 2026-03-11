@@ -60,6 +60,24 @@
 		outline-color: currentColor;
 		outline-offset: 0;
 	}
+	&.link--icon {
+		color: inherit;
+		display: inline-flex;
+		align-items: center;
+		border-radius: 0.25em;
+		&::after {
+			content: '';
+			display: inline-block;
+			inline-size: 1em;
+			block-size: 1em;
+			mask-image: url(#icon-link);
+			mask-repeat: no-repeat;
+			mask-position: center;
+			mask-size: contain;
+			background-color: currentColor;
+			margin-inline-start: auto;
+		}
+	}
 }
 /* Main styles */
 .body {
@@ -227,7 +245,7 @@
 .skills {
 	.list {
 		--list-grid-row-gap: 0.5rem;
-		--list-items-count: 12;
+		--list-items-count: 15;
 		list-style-type: disc;
 		list-style-position: inside;
 		@container section-content (max-width: 26rem) {
@@ -397,24 +415,6 @@
 		font-weight: 500;
 		color: var(--color--text-secondary);
 		text-align: end;
-		.link {
-			color: inherit;
-			display: inline-flex;
-			align-items: center;
-			border-radius: 0.25em;
-			&::after {
-				content: '';
-				display: inline-block;
-				inline-size: 1em;
-				block-size: 1em;
-				mask-image: url(#icon-link);
-				mask-repeat: no-repeat;
-				mask-position: center;
-				mask-size: contain;
-				background-color: currentColor;
-				margin-inline-start: auto;
-			}
-		}
 	}
 
 	@container section-content (max-width: 38rem) {
