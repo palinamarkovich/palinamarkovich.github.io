@@ -303,19 +303,14 @@
 
 .languages {
 	.list {
-		--list-grid-row-gap: 1em;
-		--list-grid-column-gap: 0.75em;
+		--list-grid-row-gap: 1.5em;
 		--list-items-count: 4;
-		--list-column-count: 4;
 		grid-auto-flow: row;
-		grid-template-columns: repeat(4, max-content);
-		justify-content: space-between;
 	}
 	.item {
 		display: flex;
 		align-items: center;
-		gap: 0.4em;
-		white-space: nowrap;
+		gap: 0.5em;
 	}
 	.icon {
 		inline-size: 2em;
@@ -512,37 +507,12 @@
 		print-color-adjust: exact;
 		-webkit-print-color-adjust: exact;
 	}
-
-	/* Tighter page margins so the header sits closer to the top edge */
-	@page {
-		margin: 8mm 12mm;
-	}
-
-	/* Reduce the header's outer spacing in the PDF; keep the on-site
-	   proportions so the name and "UI/UX Designer" slightly touch */
 	.header {
-		margin-block: 0 1.5rem;
-	}
-
-	/* Tighter gap between sections, still not smaller than the spacing
-	   between elements inside a section (1.5em) */
-	.main {
-		gap: 1.5rem;
-	}
-
-	/* Pull the divider lines closer to their sections */
-	.section::before {
-		margin-block: 0.5rem;
-	}
-
-	/* Keep all four languages on a single row in the narrower PDF column */
-	.languages {
-		.item {
-			font-size: 0.8rem;
+		.job-title {
+			font-size: 4rem;
 		}
-		.icon {
-			inline-size: 1.4em;
-			block-size: 1.4em;
+		.name {
+			font-size: 9rem;
 		}
 	}
 }
