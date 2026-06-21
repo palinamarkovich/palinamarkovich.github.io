@@ -12,6 +12,7 @@ When the user issues one of these one-word/short commands, perform the described
 
 - **update text** — Update the requested copy in `index.html` and proofread it (spelling, grammar, clarity). If the intended wording or meaning is unclear or something looks wrong, ask the user rather than guessing or silently "fixing" it.
 - **show** — Run the local dev server (`npm run dev`) and send the user the local URL it prints.
+- **add/replace image** — When a new image is added (e.g. to `public/images/`), check its file size and compress it so it is no larger than 400 KB, keeping reasonable visual quality.
 - **publish** — Run `npm run build` and verify it completes with no errors. Then commit the changes and push to `master` (this triggers the GitHub Pages deploy workflow). If the build fails, stop and report the errors instead of committing. Once the push succeeds, if a local dev server (from **show**) is still running, ask the user whether they still need it; stop the server if they don't.
 
 ## Development Commands
